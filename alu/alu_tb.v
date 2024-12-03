@@ -22,8 +22,7 @@ module alu_tb;
       ALUControl = $random % 4; // ALUControl range: 0 to 3
       #10; 
       //$display("SrcA=%h ; SrcB=%h ; ALUControl=%b ; ALUResult=%h ; ALUFlag=%b", SrcA, SrcB, ALUControl, ALUResult, ALUFlag);
-      $display("SrcA=%b ; SrcB=%b ; ALUControl=%b ; ALUResult=%b ; ALUFlag=%b", SrcA, SrcB, ALUControl, ALUResult, ALUFlag);
-      $display("SrcA=%d ; SrcB=%d ; ALUControl=%b ; ALUResult=%d ; ALUFlag=%b", SrcA, SrcB, ALUControl, ALUResult, ALUFlag);   
+      $display("SrcA=%b ; SrcB=%b ; ALUControl=%b ; ALUResult=%b ; ALUFlag=%b", SrcA, SrcB, ALUControl, ALUResult, ALUFlag); 
     end
     
     $dumpfile("alu_tb.vcd");
