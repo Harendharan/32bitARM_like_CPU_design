@@ -3,6 +3,7 @@
 ## Instruction Set
 
 ### **Data Processing Instruction**
+| 31:28 | 27:26 | 25 | 24:21 | 20 | 19:16 | 15:12 | 11:0 | | cond | 00 | I | cmd | S | Rn | Rd | Src2 |
 - **31:28** - `cond` (Condition Code)
 - **27:26** - `type of instruction` (`00` - Data Processing)
 - **25:20** - `funt`  
