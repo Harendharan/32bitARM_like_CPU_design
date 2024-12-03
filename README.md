@@ -7,7 +7,7 @@
 | 31:28       | 27:26                  | 25:20            | 19:16      | 15:12       | 11:0      |
 |-------------|------------------------|------------------|------------|-------------|-----------|
 | `cond`      | `type of instruction` | `funt`           | `Rn`       | `Rd`        | `Src2`    |
-| Condition   | `00` - Data Processing| Function Field   | Source Reg | Destination | Operand   |
+| Condition   | `00` - Data Processing| Function Field   | Source Reg 1 | Destination Reg | Source Reg 2   |
 
 #### **Details of `funt` (25:20) and `Src2` (11:0):**
 
