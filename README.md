@@ -186,6 +186,8 @@ Branch instructions enable program flow control by updating the program counter 
 - **PC Update**: 
   - The PC is updated to the calculated target address, effectively jumping to the new instruction location.
 
+![WhatsApp Image 2024-12-03 at 19 19 19_dd399a67](https://github.com/user-attachments/assets/a26d63bb-0c6f-48e8-a16b-dfdc4bf1eb21)
+
 ---
 
 ## Micro Architecture 
