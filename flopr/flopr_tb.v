@@ -19,18 +19,10 @@ module flopr_tb;
     d = 0;
     #20;        
     reset = 0; 
-    repeat (10) begin
-      d = $random; 
-      #20;          
-    end
 
-    reset = 1;     //reset
-    #20;
-    
-    reset = 0;
     d = $random;
     #20;
-
+    $display("d: %d, q=%d",d,q);
     $dumpfile("flopr_tb.vcd");
     $dumpvars(0, flopr_tb);
     $finish;
