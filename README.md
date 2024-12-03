@@ -21,7 +21,7 @@
 | 6:5 (I=0) | `sh`                | Shift Type                                    |
 | 4:0 (I=0) | `Rm`                | Second Source Register                        |
 
----
+
 
 ### **Memory Instruction**
 
@@ -45,7 +45,7 @@
 | 6:5 (I=0) | `sh`                | Shift Type                                    |
 | 4:0 (I=0) | `Rm`                | Offset Register                               |
 
----
+
 
 ### **Branch Instruction**
 
@@ -70,13 +70,9 @@ Memory Operation: STR and LDR
 
 Branch: B 
 
----
-
 ### Conditional mnemonics from ARM LRM: 
 
 ![WhatsApp Image 2024-12-03 at 13 30 34_e0b9d3fd](https://github.com/user-attachments/assets/6a794e82-798c-4c2c-afeb-7da60a956cea)
-
-![mnemonics](https://github.com/user-attachments/assets/e8a8261a-a35b-4f18-aeb7-ca446522d544)
 ref: Digital Design and Computer Architecture ARM edition by Harris
 
 ---
