@@ -4,14 +4,10 @@
 
 ### **Data Processing Instruction**
 
-| Bits      | Field               | Description                                   |
-|-----------|---------------------|-----------------------------------------------|
-| 31:28     | `cond`              | Condition Code                                |
-| 27:26     | `type of instruction` | `00` - Data Processing                      |
-| 25:20     | `funt`              | Function Field                                |
-| 19:16     | `Rn`                | Source Register 1                             |
-| 15:12     | `Rd`                | Destination Register                          |
-| 11:0      | `Src2`              | Second Operand                                |
+| 31:28       | 27:26                  | 25:20            | 19:16      | 15:12       | 11:0      |
+|-------------|------------------------|------------------|------------|-------------|-----------|
+| `cond`      | `type of instruction` | `funt`           | `Rn`       | `Rd`        | `Src2`    |
+| Condition   | `00` - Data Processing| Function Field   | Source Reg | Destination | Operand   |
 
 #### **Details of `funt` (25:20) and `Src2` (11:0):**
 
@@ -40,14 +36,10 @@
 
 ### **Memory Instruction**
 
-| Bits      | Field               | Description                                   |
-|-----------|---------------------|-----------------------------------------------|
-| 31:28     | `cond`              | Condition Code                                |
-| 27:26     | `type of instruction` | `01` - Memory Instruction                   |
-| 25:20     | `funt`              | Function Field                                |
-| 19:16     | `Rn`                | Base Register                                 |
-| 15:12     | `Rd`                | Destination (Load) or Source (Store) Register |
-| 11:0      | `Src2`              | Offset                                        |
+| 31:28       | 27:26                  | 25:20            | 19:16      | 15:12       | 11:0      |
+|-------------|------------------------|------------------|------------|-------------|-----------|
+| `cond`      | `type of instruction` | `funt`           | `Rn`       | `Rd`        | `Src2`    |
+| Condition   | `01` - Memory          | Function Field   | Base Reg   | Dest/Source | Offset    |
 
 #### **Details of `funt` (25:20) and `Src2` (11:0):**
 
@@ -78,12 +70,10 @@
 
 ### **Branch Instruction**
 
-| Bits      | Field               | Description                                   |
-|-----------|---------------------|-----------------------------------------------|
-| 31:28     | `cond`              | Condition Code                                |
-| 27:26     | `type of instruction` | `10` - Branch Instruction                   |
-| 25:24     | `0L`                | Link Field                                    |
-| 23:0      | `Imm24`             | Immediate Offset                              |
+| 31:28       | 27:26                  | 25:24      | 23:0       |
+|-------------|------------------------|------------|------------|
+| `cond`      | `type of instruction` | `0L`       | `Imm24`    |
+| Condition   | `10` - Branch          | Link Field | Offset     |
 
 #### **Details of `0L` (25:24) and `Imm24` (23:0):**
 
