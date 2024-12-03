@@ -62,7 +62,7 @@
 
 ---
     
-### Istruction mnemonics from ARM LRM (Used in design):
+### Instruction mnemonics from ARM LRM (Used in design):
 
 Data Processing: ADD SUB AND ORR 
 
