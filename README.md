@@ -61,7 +61,7 @@
 |           |                     | Target Address: `PC + (Imm24 << 2)`           |
 
     
-Istruction types summary:
+### Istruction mnemonics from ARM LRM (Used in design):
 
 Data Processing: ADD SUB AND ORR 
 
@@ -69,7 +69,7 @@ Memory Operation: STR and LDR
 
 Branch: B 
 
-Conditional mnemonics from ARM LRM: 
+### Conditional mnemonics from ARM LRM: 
 
 ![mnemonics](https://github.com/user-attachments/assets/e8a8261a-a35b-4f18-aeb7-ca446522d544)
 ref: Digital Design and Computer Architecture ARM edition by Harris
