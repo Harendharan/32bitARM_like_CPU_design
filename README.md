@@ -110,7 +110,7 @@ ref: Digital Design and Computer Architecture ARM edition by Harris
 ---
 ## Micro Architecture Top View
 
-![32cpu overview](https://github.com/user-attachments/assets/4b8462e6-6f55-4f31-96d8-95be95c7cc5a)
+![32cpu overview](https://github.com/user-attachments/assets/56102524-5013-4797-b2aa-c6b9978a7b17)
 
 
 ## Micro Architecture 
