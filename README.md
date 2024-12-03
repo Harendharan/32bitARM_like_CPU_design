@@ -108,8 +108,12 @@ Branch: B
 ref: Digital Design and Computer Architecture ARM edition by Harris
 
 ---
+## Micro Architecture Top View
 
-## Micro Architecture : 
+![32cpu overview](https://github.com/user-attachments/assets/4b8462e6-6f55-4f31-96d8-95be95c7cc5a)
+
+
+## Micro Architecture 
 
 ![WhatsApp Image 2024-12-02 at 18 05 23_78d8007b](https://github.com/user-attachments/assets/6bb2e541-1912-4ee8-b1e5-d6959ad55d76)
 
