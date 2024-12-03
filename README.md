@@ -1,6 +1,6 @@
 # 32bitARM_like_CPU_design
 
-## CPUs Instruction set  
+## Instruction set  
 
 Istruction types:
 
