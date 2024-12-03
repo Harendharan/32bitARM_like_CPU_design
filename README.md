@@ -1,8 +1,66 @@
 # 32bitARM_like_CPU_design
 
-## Instruction set  
+## Instruction Set
 
-Istruction types:
+### **Data Processing Instruction**
+- **31:28** - `cond` (Condition Code)
+- **27:26** - `type of instruction` (`00` - Data Processing)
+- **25:20** - `funt`  
+  - **25** - `I` (Immediate or Register)
+  - **24:21** - `cmd` (Command)
+  - **20** - `S` (Signed)
+- **19:16** - `Rn` (Source Register 1)
+- **15:12** - `Rd` (Destination Register)
+- **11:0** - `Src2` (Second Operand)  
+  - **If Immediate (I=1):**  
+    - **11:8** - `rot` (Rotation)
+    - **7:0** - `imm8` (8-bit Immediate Value)
+  - **If Register (I=0):**  
+    - **11:7** - `shamt5` (Shift Amount)
+    - **6:5** - `sh` (Shift Type)
+    - **4:0** - `Rm` (Second Source Register)
+
+---
+
+### **Memory Instruction**
+- **31:28** - `cond` (Condition Code)
+- **27:26** - `type of instruction` (`01` - Memory)
+- **25:20** - `funt`  
+  - **25** - `I` (Immediate or Register)
+  - **24:20** - `P`, `U`, `B`, `W`, `L`  
+    - **P**: Pre/Post Indexing
+    - **U**: Up/Down
+    - **B**: Byte/Word Access
+    - **W**: Write-back
+    - **L**: Load/Store
+- **19:16** - `Rn` (Base Register)
+- **15:12** - `Rd` (Destination or Source Register)
+- **11:0** - `Src2` (Offset)  
+  - **If Immediate (I=1):**  
+    - **11:0** - `imm12` (12-bit Immediate Offset)
+  - **If Register (I=0):**  
+    - **11:7** - `shamt5` (Shift Amount)
+    - **6:5** - `sh` (Shift Type)
+    - **4:0** - `Rm` (Offset Register)
+
+---
+
+### **Branch Instruction**
+- **31:28** - `cond` (Condition Code)
+- **27:26** - `type of instruction` (`10` - Branch)
+- **25:24** - `0L`  
+  - **25** - Always `0`
+  - **24 (L)**:  
+    - `1`: Branch with Link (Function Call)
+    - `0`: Regular Branch
+- **23:0** - `Imm24` (Immediate Offset)  
+  - Offset is sign-extended to 32 bits and left-shifted by 2.
+  - Branch target address is:  
+    \[
+    \text{Target Address} = \text{PC} + (\text{Imm24} \ll 2)
+    \]
+    
+Istruction types summary:
 
 Data Processing: ADD SUB AND ORR 
 
