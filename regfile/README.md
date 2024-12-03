@@ -1,1 +1,1 @@
-https://www.edaplayground.com/x/eat8
+edaplayground: https://www.edaplayground.com/x/eat8
