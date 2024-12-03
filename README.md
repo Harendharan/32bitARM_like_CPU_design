@@ -39,7 +39,7 @@
 | 31:28       | 27:26                  | 25:20            | 19:16      | 15:12       | 11:0      |
 |-------------|------------------------|------------------|------------|-------------|-----------|
 | `cond`      | `type of instruction` | `funt`           | `Rn`       | `Rd`        | `Src2`    |
-| Condition   | `01` - Memory          | Function Field   | Base Reg   | Dest/Source | Offset    |
+| Condition   | `01` - Memory          | Function Field   | Base Reg   | Destination/Source | Offset    |
 
 #### **Details of `funt` (25:20) and `Src2` (11:0):**
 
