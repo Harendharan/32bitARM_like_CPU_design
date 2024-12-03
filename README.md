@@ -143,13 +143,11 @@ Memory instructions (`LDR` and `STR`) involve transferring data between register
 
 ---
 
-## Datapath
-
 ### Data Processing Instruction Datapath
 
 Data processing instructions involve arithmetic, logical, and data manipulation operations. The datapath for these instructions processes operands from either immediate values or registers, executes the specified command (`cmd`), and stores the result in the destination register (`Rd`). The control signal `I` determines whether the second operand (`Src2`) is immediate or register-based.
 
-#### Immediate Operand (`I=1`)
+#### Immediate Mode (`I=1`)
 
 - **Operand Fetch**: 
   - Extract the 8-bit immediate value (`imm8`) and rotate it by the specified `rot` value (4 bits) to align it for the operation.
@@ -161,7 +159,7 @@ Data processing instructions involve arithmetic, logical, and data manipulation 
 ![WhatsApp Image 2024-12-03 at 19 02 43_943340b4](https://github.com/user-attachments/assets/171349bb-2e1e-4788-bed5-d77650705454)
 
 
-#### Register Operand (`I=0`)
+#### Register Mode (`I=0`)
 
 - **Operand Fetch**: 
   - Retrieve the first source operand from the register (`Rn`).
@@ -174,6 +172,21 @@ Data processing instructions involve arithmetic, logical, and data manipulation 
 
 ---
 
+### Branch Instruction Datapath
+
+Branch instructions enable program flow control by updating the program counter (PC) to jump to a target address. For a regular branch (`B`), the instruction computes the target address using the immediate offset (`Imm24`) and updates the PC accordingly. The `L` bit is set to `0` for regular branches.
+
+#### Regular Branch (`B`)
+
+- **Offset Calculation**: 
+  - Extract the 24-bit immediate offset (`Imm24`) from the instruction.
+  - Sign-extend `Imm24` to 32 bits and left-shift it by 2 to align it to word boundaries.
+- **Target Address Computation**: 
+  - Add the computed offset to the current value of the PC to determine the target address (`PC + (Imm24 << 2)`).
+- **PC Update**: 
+  - The PC is updated to the calculated target address, effectively jumping to the new instruction location.
+
+---
 
 ## Micro Architecture 
 
