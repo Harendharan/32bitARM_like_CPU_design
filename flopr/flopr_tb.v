@@ -32,7 +32,7 @@ module flopr_tb;
     #20;
 
     $dumpfile("flopr_tb.vcd");
-    $dumpvars(0, tb_flopr);
+    $dumpvars(0, flopr_tb);
     $finish;
   end
 
