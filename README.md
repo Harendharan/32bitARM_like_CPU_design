@@ -112,6 +112,37 @@ ref: Digital Design and Computer Architecture ARM edition by Harris
 
 ![32cpu overview](https://github.com/user-attachments/assets/456d560d-4701-4ff0-9988-70b5811e8e6b)
 
+---
+
+## Datapath
+
+### Memory Instruction Datapath
+
+Memory instructions (`LDR` and `STR`) involve transferring data between registers and memory. The datapath for these instructions revolves around decoding the instruction, calculating the effective address using the base register (`Rn`) and an offset, and performing the appropriate memory access operation. Control signals like `I`, `P`, `U`, `W`, and `L` determine the exact behavior of the operation.
+
+#### LDR (Load Instruction)
+
+- **Effective Address Calculation**: 
+  - If `I=1`: Compute the effective address by adding/subtracting the 12-bit immediate (`imm12`) to/from the base register (`Rn`).
+  - If `I=0`: Use the base register (`Rn`) and a shifted offset from `Rm` (based on `shamt5` and `sh`).
+- **Memory Access**: Read data from memory using the computed address.
+- **Destination Register Update**: Load the read data into the destination register (`Rd`).
+- **Optional Write-Back**: If `P=0` and `W=1`, update the base register (`Rn`) with the effective address.
+
+  ![WhatsApp Image 2024-12-03 at 18 35 55_247a0e6e](https://github.com/user-attachments/assets/107fb7a7-cb54-463d-9e51-3b0236eec4d4)
+
+
+#### STR (Store Instruction)
+
+- **Effective Address Calculation**: 
+  - Similar to `LDR`, compute the effective address using either an immediate offset or a shifted register offset.
+- **Memory Access**: Write data from the source register (`Rd`) into memory at the computed address.
+- **Optional Write-Back**: If `P=0` and `W=1`, update the base register (`Rn`) with the effective address.
+
+![WhatsApp Image 2024-12-03 at 18 37 24_38eb6853](https://github.com/user-attachments/assets/d230fa4f-2d10-499a-82f6-935742a4cc53)
+
+---
+
 ## Micro Architecture 
 
 ![WhatsApp Image 2024-12-02 at 18 05 23_78d8007b](https://github.com/user-attachments/assets/6bb2e541-1912-4ee8-b1e5-d6959ad55d76)
