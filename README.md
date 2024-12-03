@@ -143,6 +143,38 @@ Memory instructions (`LDR` and `STR`) involve transferring data between register
 
 ---
 
+## Datapath
+
+### Data Processing Instruction Datapath
+
+Data processing instructions involve arithmetic, logical, and data manipulation operations. The datapath for these instructions processes operands from either immediate values or registers, executes the specified command (`cmd`), and stores the result in the destination register (`Rd`). The control signal `I` determines whether the second operand (`Src2`) is immediate or register-based.
+
+#### Immediate Operand (`I=1`)
+
+- **Operand Fetch**: 
+  - Extract the 8-bit immediate value (`imm8`) and rotate it by the specified `rot` value (4 bits) to align it for the operation.
+  - Retrieve the first source operand from the register (`Rn`).
+- **Operation Execution**: Perform the specified command (`cmd`) such as ADD, SUB, AND, ORR, etc., using the first source operand (`Rn`) and the processed immediate value.
+- **Result Storage**: Write the computed result into the destination register (`Rd`).
+- **Flags Update**: If `S=1`, update condition flags (e.g., Zero, Negative, Carry, Overflow).
+
+![WhatsApp Image 2024-12-03 at 19 02 43_943340b4](https://github.com/user-attachments/assets/171349bb-2e1e-4788-bed5-d77650705454)
+
+
+#### Register Operand (`I=0`)
+
+- **Operand Fetch**: 
+  - Retrieve the first source operand from the register (`Rn`).
+  - Obtain the second operand from the register (`Rm`) and apply the specified shift (`sh`) and shift amount (`shamt5`) for alignment.
+- **Operation Execution**: Execute the specified command (`cmd`) using the first source operand (`Rn`) and the shifted second operand (`Rm`).
+- **Result Storage**: Store the result in the destination register (`Rd`).
+- **Flags Update**: If `S=1`, update condition flags based on the result.
+
+![WhatsApp Image 2024-12-03 at 19 15 38_a337ae8d](https://github.com/user-attachments/assets/51f844d5-2fb0-42f9-b88a-1d02c183a089)
+
+---
+
+
 ## Micro Architecture 
 
 ![WhatsApp Image 2024-12-02 at 18 05 23_78d8007b](https://github.com/user-attachments/assets/6bb2e541-1912-4ee8-b1e5-d6959ad55d76)
