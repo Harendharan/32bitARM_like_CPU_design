@@ -8,7 +8,6 @@ module imem (
     initial begin
          $readmemh("memfile.dat", RAM);
          rd = RAM[a[31:2]]; 
-
     end
 
 endmodule
