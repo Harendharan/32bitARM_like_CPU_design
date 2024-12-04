@@ -2,13 +2,13 @@ module dmem (
     input clk, 
     input we, 
     input [31:0] a, wd, 
-    output reg [31:0] rd
+    output wire [31:0] rd
 );
 
   reg [31:0] RAM [63:0]; // 64 X 32
-    always @(*) begin
-        rd = RAM[a[31:2]];  // Word-aligned read (a[31:2] gives the index)
-    end
+   
+    assign rd = RAM[a[31:2]];  // Word-aligned read (a[31:2] gives the index)
+   
 
     // Memory write
     always @(posedge clk) begin
