@@ -188,6 +188,10 @@ Branch instructions enable program flow control by updating the program counter 
 
 ![WhatsApp Image 2024-12-03 at 19 19 19_dd399a67](https://github.com/user-attachments/assets/a26d63bb-0c6f-48e8-a16b-dfdc4bf1eb21)
 
+### Final Datapath
+
+![WhatsApp Image 2024-12-04 at 13 19 17_d4c7edb9](https://github.com/user-attachments/assets/3967fe60-2d40-46bf-a6ef-821620513a0e)
+
 ---
 
 ## Micro Architecture 
