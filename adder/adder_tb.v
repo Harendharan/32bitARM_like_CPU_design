@@ -12,7 +12,7 @@ module adder_tb;
             a = $random; 
             b = $random; 
             #10;         
-          $display("Time: %0t | a: %d | b: %d | y: %d", $time, a, b, y);
+            $display("a: %d , b: %d , y: %d", a, b, y);
         end
 
         $finish;
