@@ -196,11 +196,71 @@ Branch instructions enable program flow control by updating the program counter 
 
 ## Micro Architecture 
 
+Integrating controler with the datapath gives us the main Micro Architecture. Here Controller is treated as a Black Box.
+
 ![WhatsApp Image 2024-12-02 at 18 05 23_78d8007b](https://github.com/user-attachments/assets/6bb2e541-1912-4ee8-b1e5-d6959ad55d76)
 
 
 ## Demystifying Controller
 
+Removing the Controller BlackBox, we unveil two critical components inside: **Decoder** and **Conditional Logic**. These work together to control the flow of operations based on the current instruction and condition flags.
+
+![Controller Overview](https://github.com/user-attachments/assets/822ba4a9-3815-4601-95b2-6be4fa1eacb4)
+
+### Decoder
+
+The **Decoder** module is responsible for interpreting the instruction passed to the controller and generating the corresponding control signals. This is achieved through its subcomponents: **PC Logic**, **Main Decoder**, and **ALU Decoder**. 
+
+- **PC Logic** decides whether the next instruction should be fetched from the next sequential address or jump based on certain conditions.
+- **Main Decoder** decodes the operation field and function codes from the instruction, producing control signals like `RegWrite`, `MemWrite`, `ALUSrc`, and `ImmSrc`.
+- **ALU Decoder** specifically manages control signals related to the ALU operation, determining which arithmetic or logical function the ALU should perform (e.g., ADD, SUB, AND, ORR). 
+
+![Decoder](https://github.com/user-attachments/assets/cb1800fd-5518-4de5-950b-f219fbace3ef)
+
+### PC Logic
+The **PC Logic** is crucial in controlling the program counter. It decides whether to update the PC to the next sequential address or to jump to a new address depending on branch conditions or other control signals. This logic interacts directly with the flags set by the ALU and condition checks from the `Condlogic`.
+
+### Main Decoder
+The **Main Decoder** extracts operation and function bits from the instruction and produces various control signals. For instance, it might set the ALU source or define how the result should be stored (e.g., to registers or memory). Based on the instruction type (e.g., data-processing, load/store), it configures these control signals accordingly.
+
+### ALU Decoder
+The **ALU Decoder** focuses on translating the function code to a specific ALU operation, such as addition, subtraction, logical AND, or OR. It checks the instruction's function field and determines what kind of operation the ALU should perform. It also determines whether the result should affect condition flags like zero, negative, carry, or overflow.
+
+### Conditional Logic
+
+The **Conditional Logic** block ensures that certain operations (like writing to registers or memory) occur only if certain conditions, based on the flags set by previous operations, are met. These conditions could be checks for equality (EQ), negative result (MI), or overflow (VS), among others. This logic evaluates the condition code and decides whether the operation should proceed.
+
+**Inside Conditional Logic:**
+
+1. **Flag Storage (Flip-Flops)**: 
+   - **Flip-Flops (flopenr)** store condition flags (e.g., zero, negative, carry, overflow) set by the ALU or other operations. These flip-flops are controlled by the `FlagWrite` signal, which enables updating of flags when needed.
+   - The flags are updated only if `FlagWrite` is asserted, which is typically determined by the type of instruction or operation being executed (e.g., comparison, arithmetic, or logical operations).
+
+2. **Conditional Check (`condcheck`)**:
+   - The **condcheck** block evaluates the stored flags and compares them with the condition codes (`Cond`), determining whether the specific operation should proceed based on the current state of the flags.
+   - For example, if the condition is "zero" (EQ), the `CondEx` signal is asserted when the zero flag is set. This means the operation will proceed if the condition is met.
+
+3. **Control Signal Generation**:
+   - Based on the evaluated condition (`CondEx`), the **Conditional Logic** generates control signals like `RegWrite`, `MemWrite`, and `PCSrc`.
+   - If `CondEx` is true (i.e., the condition is met), these signals may be asserted to enable register writes, memory writes, or branch operations (e.g., updating the program counter).
+
+![Conditional Logic](https://github.com/user-attachments/assets/19cf078c-eeef-4539-b367-ea0597210f24)
+
+---
+
+### Connections in Conditional Logic
+
+In the **Conditional Logic** module, the **flip-flops (FF)** play a crucial role in storing and passing the flags set by the ALU operation. Specifically, the **flopenr** modules are used to store the 2-bit flags (`FlagWrite`) for each condition (e.g., `neg`, `zero`, `carry`, `overflow`). These flags are written to flip-flops based on the control signal and then used by the `condcheck` module to determine if the condition for branching or other control signals is met.
+
+- **Flip-flops (flopenr)**: These are used to store the current state of flags (`Flags[3:2]` for certain flags and `Flags[1:0]` for others). The flags are written into flip-flops only when the `FlagWrite` control signal is asserted, indicating that the flags should be updated.
+  
+- **Conditional Check (`condcheck`)**: This block reads the stored flag values (`Flags`) and evaluates the condition code (`Cond`). It outputs the `CondEx` signal, which determines whether a particular control operation should be executed based on the condition flags.
+
+  - For example, if the condition is for "zero" (EQ), the `CondEx` signal is asserted when the zero flag is set, signaling that the operation (such as memory write, register write, or PC update) should proceed.
+
+- **Control Signals**: Based on the evaluated condition (`CondEx`), other control signals like `RegWrite`, `MemWrite`, and `PCSrc` are conditionally asserted. For instance, if `CondEx` is true, `RegWrite` and `MemWrite` might be enabled.
+
+---
 
 
 
