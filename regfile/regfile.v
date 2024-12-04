@@ -7,7 +7,7 @@ module regfile (
 );
 
  
-  reg [31:0] rf[14:0];  // 32 X 15 Register file 
+  reg [31:0] rf[14:0];  // 15 X 32 Register file 
 
   // Read 
   assign rd1 = (ra1 == 4'b1111) ? r15 : rf[ra1]; 
