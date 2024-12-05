@@ -289,98 +289,188 @@ ref: Digital Design and Computer Architecture ARM edition by Harris
 
 ---
 
-### 2. Combined Datapath and Controller (`cpu.v`)
-In this implementation, both the **datapath** and the **controller** are encapsulated within a single Verilog module, `cpu.v`. This setup simplifies the design by reducing the need for separate modules and direct connections between the datapath and controller. However, it still follows the basic principles of CPU design.
-
-#### Key Components Inside `cpu.v`:
-- **Program Counter (PC)**: Holds the address of the next instruction to be fetched.
-- **Instruction Register (IR)**: Holds the fetched instruction from imem.
-- **Register File**: Stores general-purpose registers (e.g., R0 to R15).
-- **ALU**: Performs arithmetic or logical operations based on control signals.
-- **Multiplexers (MUX)**: Routes the appropriate data (e.g., selecting between ALU results and register file outputs).
-- **Data Memory (DMEM)**: Interface for reading from and writing to data memory.
-- **Controller Logic**: Decodes the instruction and generates control signals for:
-  - Register writes
-  - Memory access (read/write)
-  - ALU operation selection
-  - Multiplexer selection for data routing
-  - Program Counter (PC) updates (increment or branch)
-
----
-
-### 3. Data Flow in `cpu.v`
-The flow of data within the CPU can be broken down into the following steps:
-
-1. **Fetch**: 
-   - The **Program Counter (PC)** points to the next instruction address, which is sent to **Instruction Memory (imem)**.
-   - The instruction fetched from imem is placed into the **Instruction Register (IR)**.
-   
-2. **Decode**: 
-   - The controller decodes the instruction by reading the opcode and identifying the instruction type.
-   - Based on the instruction, the controller generates the necessary control signals.
-   
-3. **Execute**: 
-   - The ALU performs operations (like addition, subtraction, logical operations) on data fetched from the **Register File** or provided as immediate values.
-   - Data memory operations like **load** and **store** are also executed during this phase (if applicable).
-
-4. **Memory Access (if applicable)**: 
-   - If the instruction involves data manipulation, **Data Memory (dmem)** is accessed (e.g., reading or writing data).
-   
-5. **Write-back**: 
-   - The result of the ALU operation (or data from dmem) is written back to the **Register File** if necessary.
-
-6. **PC Update**:
-   - The **Program Counter (PC)** is updated based on the instruction (incremented for sequential execution, or updated with a new address for Branch instructions).
-
----
-
-### 4. Control Signals
-The **controller** within `cpu.v` generates various control signals that regulate the operation of the datapath components:
-- **ALU Control**: Determines the type of operation the ALU should perform (e.g., ADD, SUB, AND, OR).
-- **Register Write**: Controls whether data should be written to the **Register File**.
-- **Memory Read/Write**: Specifies if data should be read from or written to **Data Memory (dmem)**.
-- **PC Control**: Dictates whether the **Program Counter (PC)** should be incremented or jump to a new address (for branch instruction).
-
----
-## Verification
-
-All the individuals components are verified and uploaded in the folders namely `CPU components` , `dmem` and `imem` in this repo.
-The main **TOP Module** is verified with a simple verification testbench by debugging the contents of the general purpose registers.
-
-### Description of the Testbench
-
-This testbench is designed to test the functionality of the `top` module, which includes a CPU, memory (both instruction and data), and various other components. The testbench verifies if a specific register in the CPU (register `R5`) contains the expected value.
-
-#### Key Components of the Testbench:
-
-1. **Instantiation of the DUT (Device Under Test)**:
-   - The `top` module is instantiated as `dut` (device under test). The `top` module includes the entire system, including the CPU and other connected components such as memories.
-   - The `top` module takes `clk` (clock) and `reset` as inputs, which are provided by the testbench.
-
-2. **Initial Reset**:
-   - The `reset` signal is asserted high (`reset <= 1`) for 10 time units to initialize the system. After that, the reset is deasserted (`reset <= 0`), allowing the system to start running.
-   - This simulates the startup behavior where the system is first reset and then allowed to begin normal operation.
-
-3. **Clock Generation**:
-   - The clock signal `clk` is generated using an `always` block with a period of 10 time units (5 time units for high and low). This generates a continuous clock pulse to drive the system.
-
-4. **Verification of Register Value**:
-   - After the system has run for a period of time (10,000 time units in this case), the value of `R5` (register 5) from the CPU's register file is checked.
-   - If `R5` contains the expected value (`32'd11`), the test is marked as "passed" and a success message is displayed.
-   - If the value in `R5` is incorrect, the test fails and the actual value of `R5` is printed along with the expected value.
-
-5. **Test Completion**:
-   - The `$finish` system task is called at the end of the test to stop the simulation.
-
-#### Sample Output:
-When the test completes, the terminal will display one of the following messages:
-- **Test Passed**: If `R5` contains the expected value, the message will indicate a successful test.
-
----
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### END
 
 
 
