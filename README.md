@@ -1,5 +1,5 @@
 # 32bitARM_like_CPU_design
-The 32-bit ARM-like CPU design project aims to simulate a basic CPU architecture inspired by the ARM instruction set, focusing on data processing, memory access, and branching operations. This project explores the core elements of CPU design, including instruction decoding, execution, memory management, and control flow. The CPU supports a range of instructions such as arithmetic and logical operations, load/store from memory, and conditional/unconditional branching, all processed through a structured datapath and control unit. By implementing a simple functional processor, this project provides insight into the operation of microprocessors and serves as a foundation for more advanced CPU designs.
+The 32-bit ARM-like CPU design project aims to simulate a basic CPU architecture inspired by the ARM instruction set, focusing on data processing, memory access, and branching operations. This project explores the core elements of CPU design, including instruction decoding, execution, memory management, and control flow. The CPU supports a instruction types such as Data processing, Memory and Branch instructions. By implementing a simple functional processor, this project provides insight into the operation of microprocessors and serves as a foundation for more advanced CPU designs.
 
 **Instructor**: Rajdeep Mazumder (WhyRD)
 
