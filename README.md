@@ -266,7 +266,7 @@ In the **Conditional Logic** module, the **flip-flops (FF)** play a crucial role
 
 ![WhatsApp Image 2024-12-02 at 18 15 42_c1fb8306](https://github.com/user-attachments/assets/7102e175-f1f8-4995-846a-c8371fcbb7ea)
 
-### 1 Top-Level CPU Architecture
+### 1. Top-Level CPU Architecture
 The design of a 32-bit CPU in a single Verilog file (`cpu.v`) includes both the **datapath** and **controller** modules combined into one unit. The CPU interacts with **instruction memory (IMEM)** and **data memory (DMEM)**, with the combined module orchestrating data processing and control flow.
 
 #### Components:
