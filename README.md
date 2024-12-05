@@ -262,10 +262,11 @@ In the **Conditional Logic** module, the **flip-flops (FF)** play a crucial role
 
 ---
 
+## Verilog Implementation
 
+![WhatsApp Image 2024-12-02 at 18 15 42_c1fb8306](https://github.com/user-attachments/assets/7102e175-f1f8-4995-846a-c8371fcbb7ea)
 
-
-
+![WhatsApp Image 2024-12-02 at 18 15 42_5be5dea0](https://github.com/user-attachments/assets/b1d5c10e-9e7c-4417-96b1-f7981fd33f5b)
 
 
 
