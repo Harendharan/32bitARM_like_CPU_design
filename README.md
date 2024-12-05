@@ -5,6 +5,8 @@ The 32-bit ARM-like CPU design project aims to simulate a basic CPU architecture
 
 **edaplayground**: https://www.edaplayground.com/x/9uJ4
 
+---
+
 ## Instruction Set
 
 ### **Data Processing Instruction**
