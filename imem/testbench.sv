@@ -6,8 +6,6 @@ module testbench;
   imem dut (a,rd);
 
   initial begin
-    $dumpfile("imem_tb.vcd");
-    $dumpvars(0, testbench);
 
     // Test Case 1: Address 0
     a = 32'h00000000;
