@@ -267,13 +267,13 @@ In the **Conditional Logic** module, the **flip-flops (FF)** play a crucial role
 ![WhatsApp Image 2024-12-02 at 18 15 42_c1fb8306](https://github.com/user-attachments/assets/7102e175-f1f8-4995-846a-c8371fcbb7ea)
 
 ### 1. Top-Level CPU Architecture
-The design of a 32-bit CPU in a single Verilog file (`cpu.v`) includes both the **datapath** and **controller** modules combined into one unit. The CPU interacts with **instruction memory (IMEM)** and **data memory (DMEM)**, with the combined module orchestrating data processing and control flow.
+The design of a 32-bit CPU in a single Verilog file (`cpu.v`) includes both the **datapath** and **controller** modules combined into one unit. The CPU interacts with **instruction memory (imem)** and **data memory (dmem)**, with the combined module orchestrating data processing and control flow.
 
 #### Components:
 - **Datapath**: Responsible for executing operations on data. This includes the ALU (Arithmetic Logic Unit), register file, memory interfaces, and multiplexers to route data where needed.
 - **Controller**: Manages the operation of the datapath. It generates control signals that dictate the functionality of the datapath components based on the current instruction.
-- **Instruction Memory (IMEM)**: Stores the program code (instructions) for the CPU.
-- **Data Memory (DMEM)**: Stores and retrieves data during execution.
+- **Instruction Memory (imem)**: Stores the program code (instructions) for the CPU. In our program, `memfile.dat` is used to dump the instructions into the instruction memory.
+- **Data Memory (dmem)**: Stores and retrieves data during execution.
 
 ---
 
@@ -282,8 +282,8 @@ In this implementation, both the **datapath** and the **controller** are encapsu
 
 #### Key Components Inside `cpu.v`:
 - **Program Counter (PC)**: Holds the address of the next instruction to be fetched.
-- **Instruction Register (IR)**: Holds the fetched instruction from IMEM.
-- **Register File**: Stores general-purpose registers (e.g., R0 to R31).
+- **Instruction Register (IR)**: Holds the fetched instruction from imem.
+- **Register File**: Stores general-purpose registers (e.g., R0 to R15).
 - **ALU**: Performs arithmetic or logical operations based on control signals.
 - **Multiplexers (MUX)**: Routes the appropriate data (e.g., selecting between ALU results and register file outputs).
 - **Data Memory (DMEM)**: Interface for reading from and writing to data memory.
@@ -292,7 +292,7 @@ In this implementation, both the **datapath** and the **controller** are encapsu
   - Memory access (read/write)
   - ALU operation selection
   - Multiplexer selection for data routing
-  - Program Counter (PC) updates (increment or jump/branch)
+  - Program Counter (PC) updates (increment or branch)
 
 ---
 
@@ -300,8 +300,8 @@ In this implementation, both the **datapath** and the **controller** are encapsu
 The flow of data within the CPU can be broken down into the following steps:
 
 1. **Fetch**: 
-   - The **Program Counter (PC)** points to the next instruction address, which is sent to **Instruction Memory (IMEM)**.
-   - The instruction fetched from IMEM is placed into the **Instruction Register (IR)**.
+   - The **Program Counter (PC)** points to the next instruction address, which is sent to **Instruction Memory (imem)**.
+   - The instruction fetched from imem is placed into the **Instruction Register (IR)**.
    
 2. **Decode**: 
    - The controller decodes the instruction by reading the opcode and identifying the instruction type.
@@ -312,13 +312,13 @@ The flow of data within the CPU can be broken down into the following steps:
    - Data memory operations like **load** and **store** are also executed during this phase (if applicable).
 
 4. **Memory Access (if applicable)**: 
-   - If the instruction involves data manipulation, **Data Memory (DMEM)** is accessed (e.g., reading or writing data).
+   - If the instruction involves data manipulation, **Data Memory (dmem)** is accessed (e.g., reading or writing data).
    
 5. **Write-back**: 
-   - The result of the ALU operation (or data from DMEM) is written back to the **Register File** if necessary.
+   - The result of the ALU operation (or data from dmem) is written back to the **Register File** if necessary.
 
 6. **PC Update**:
-   - The **Program Counter (PC)** is updated based on the instruction (incremented for sequential execution, or updated with a new address for jump/branch instructions).
+   - The **Program Counter (PC)** is updated based on the instruction (incremented for sequential execution, or updated with a new address for Branch instructions).
 
 ---
 
@@ -326,8 +326,8 @@ The flow of data within the CPU can be broken down into the following steps:
 The **controller** within `cpu.v` generates various control signals that regulate the operation of the datapath components:
 - **ALU Control**: Determines the type of operation the ALU should perform (e.g., ADD, SUB, AND, OR).
 - **Register Write**: Controls whether data should be written to the **Register File**.
-- **Memory Read/Write**: Specifies if data should be read from or written to **Data Memory (DMEM)**.
-- **PC Control**: Dictates whether the **Program Counter (PC)** should be incremented or jump to a new address (for branches and jumps).
+- **Memory Read/Write**: Specifies if data should be read from or written to **Data Memory (dmem)**.
+- **PC Control**: Dictates whether the **Program Counter (PC)** should be incremented or jump to a new address (for branch instruction).
 
 ---
 
