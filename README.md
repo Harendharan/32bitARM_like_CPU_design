@@ -282,8 +282,9 @@ The design of a 32-bit CPU in a single Verilog file (`cpu.v`) includes both the 
 - **Data Memory (dmem)**: Stores and retrieves data during execution.
 - **Instruction Memory (imem)**: Stores the program code (instructions) for the CPU. In our program, `memfile.dat` is used to dump the instructions (binary or hexadecimal machine code) into the instruction memory.
 - **memfile.dat**:
-- 
-![WhatsApp Image 2024-12-05 at 19 48 27_f93f003e](https://github.com/user-attachments/assets/06079ce2-4bb1-4986-8433-8684ac40e9e4)
+
+![WhatsApp Image 2024-12-05 at 23 56 48_35dec958](https://github.com/user-attachments/assets/4c626ada-54a6-4bc6-818a-d45f53ee5ba9)
+
 
 ref: Digital Design and Computer Architecture ARM edition by Harris
 
