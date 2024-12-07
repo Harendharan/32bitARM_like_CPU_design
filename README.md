@@ -508,22 +508,6 @@ When the test completes, the terminal will display the following messages:
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
 ---
 
 
