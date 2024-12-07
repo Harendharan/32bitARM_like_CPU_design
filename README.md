@@ -368,7 +368,7 @@ This testbench is designed to test the functionality of the `top` module, which 
   
      ```
      initial begin
-     	reset <= 1; 
+     reset <= 1; 
   	  #10;
       reset <= 0;
      end
