@@ -435,7 +435,7 @@ This testbench is designed to test the functionality of the `top` module, which 
 $finish;
 ```
 
-#### Sample Output
+#### Output
 When the test completes, the terminal will display the following messages:
 
 ![image](https://github.com/user-attachments/assets/13222a9e-c5bb-41bf-8000-8d68c9e11bf2)
