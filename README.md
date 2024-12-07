@@ -207,6 +207,7 @@ Integrating controler with the datapath gives us the main Micro Architecture. He
 
 ![WhatsApp Image 2024-12-02 at 18 05 23_78d8007b](https://github.com/user-attachments/assets/6bb2e541-1912-4ee8-b1e5-d6959ad55d76)
 
+---
 
 ## Demystifying Controller
 
@@ -343,6 +344,7 @@ The **controller** within `cpu.v` generates various control signals that regulat
 - **PC Control**: Dictates whether the **Program Counter (PC)** should be incremented or jump to a new address (for branch instruction).
 
 ---
+
 ## Verification
 
 All the individuals components are verified and uploaded in the folders namely `CPU components` , `dmem` and `imem` in this repo.
@@ -441,6 +443,7 @@ When the test completes, the terminal will display the following messages:
 ![image](https://github.com/user-attachments/assets/13222a9e-c5bb-41bf-8000-8d68c9e11bf2)
 
 ---
+
 ---
 
 
