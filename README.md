@@ -346,17 +346,20 @@ The **controller** within `cpu.v` generates various control signals that regulat
 ## Verification
 
 All the individuals components are verified and uploaded in the folders namely `CPU components` , `dmem` and `imem` in this repo.
-The main **TOP Module** is verified with a simple verification testbench by debugging the contents of the general purpose registers.
+The main **TOP Module** is verified with a simple verification testbench by debugging the contents of the general purpose registers and RAM .
 
 ### Description of the Testbench
 
-This testbench is designed to test the functionality of the `top` module, which includes a CPU, memory (both instruction and data), and various other components. The testbench verifies if a specific register in the CPU (register `R5`) contains the expected value.
+This testbench is designed to test the functionality of the `top` module, which includes a CPU, memory (both instruction and data), and various other components. The testbench verifies if a specific register in the CPU or specific location in the RAM contains the expected value.
 
 #### Key Components of the Testbench:
 
 1. **Instantiation of the DUT (Device Under Test)**:
    - The `top` module is instantiated as `dut` (device under test). The `top` module includes the entire system, including the CPU and other connected components such as memories.
    - The `top` module takes `clk` (clock) and `reset` as inputs, which are provided by the testbench.
+     ```
+     top dut(clk, reset);
+     ```
 
 2. **Initial Reset**:
    - The `reset` signal is asserted high (`reset <= 1`) for 10 time units to initialize the system. After that, the reset is deasserted (`reset <= 0`), allowing the system to start running.
@@ -365,7 +368,7 @@ This testbench is designed to test the functionality of the `top` module, which 
 3. **Clock Generation**:
    - The clock signal `clk` is generated using an `always` block with a period of 10 time units (5 time units for high and low). This generates a continuous clock pulse to drive the system.
 
-4. **Verification of Register Value**:
+4. **Verification of CPU**:
    - After the system has run for a period of time (10,000 time units in this case), the value of `R5` (register 5) from the CPU's register file is checked.
    - If `R5` contains the expected value (`32'd11`), the test is marked as "passed" and a success message is displayed.
    - If the value in `R5` is incorrect, the test fails and the actual value of `R5` is printed along with the expected value.
