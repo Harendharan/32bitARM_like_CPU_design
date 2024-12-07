@@ -352,33 +352,93 @@ The main **TOP Module** is verified with a simple verification testbench by debu
 
 This testbench is designed to test the functionality of the `top` module, which includes a CPU, memory (both instruction and data), and various other components. The testbench verifies if a specific register in the CPU or specific location in the RAM contains the expected value.
 
-#### Key Components of the Testbench:
+#### Key Components of the Testbench
 
-1. **Instantiation of the DUT (Device Under Test)**:
+##### Instantiation of the DUT (Device Under Test):
    - The `top` module is instantiated as `dut` (device under test). The `top` module includes the entire system, including the CPU and other connected components such as memories.
    - The `top` module takes `clk` (clock) and `reset` as inputs, which are provided by the testbench.
+     
      ```
      top dut(clk, reset);
      ```
 
-2. **Initial Reset**:
+##### Initial Reset
    - The `reset` signal is asserted high (`reset <= 1`) for 10 time units to initialize the system. After that, the reset is deasserted (`reset <= 0`), allowing the system to start running.
    - This simulates the startup behavior where the system is first reset and then allowed to begin normal operation.
+  
+     ```
+     initial begin
+     	reset <= 1; 
+  	  #10;
+      reset <= 0;
+     end
+     ```
 
-3. **Clock Generation**:
+##### Clock Generation
    - The clock signal `clk` is generated using an `always` block with a period of 10 time units (5 time units for high and low). This generates a continuous clock pulse to drive the system.
+  
+     ```
+     always #5 clk=~clk;
+     ```
 
-4. **Verification of CPU**:
-   - After the system has run for a period of time (10,000 time units in this case), the value of `R5` (register 5) from the CPU's register file is checked.
-   - If `R5` contains the expected value (`32'd11`), the test is marked as "passed" and a success message is displayed.
-   - If the value in `R5` is incorrect, the test fails and the actual value of `R5` is printed along with the expected value.
+##### Verification of CPU
+   - After the system has run for a period of time (10,000 time units in this case), the values of General purpose Registers from the CPU's register file and RAM are checked.
 
-5. **Test Completion**:
+ ![WhatsApp Image 2024-12-07 at 12 56 10_5cb560f3](https://github.com/user-attachments/assets/1d789d77-711b-4f7a-93ae-dabf247d043e)
+
+
+1. **Test Case 1: SUB R0, R15, R15**
+   - **Instruction**: `R0 = 0`
+   - **Verification**: Checks if register `R0` contains `0`.
+   - **Expected Outcome**: Passes if `R0 = 0`.
+
+2. **Test Case 2: ADD R3, R0, #12**
+   - **Instruction**: `R3 = 12`
+   - **Verification**: Checks if register `R3` contains `12`.
+   - **Expected Outcome**: Passes if `R3 = 12`.
+
+3. **Test Case 3: ORR R4, R7, R2**
+   - **Instruction**: `R4 = 3 OR 5 = 7`
+   - **Verification**: Checks if register `R4` contains `7`.
+   - **Expected Outcome**: Passes if `R4 = 7`.
+
+4. **Test Case 4: ADD R5, R5, R4**
+   - **Instruction**: `R5 = 4 + 7 = 11`
+   - **Verification**: Checks if register `R5` contains `11`.
+   - **Expected Outcome**: Passes if `R5 = 11`.
+
+5. **Test Case 5: SUB R7, R7, R2**
+   - **Instruction**: `R7 = 12 - 5 = 7`
+   - **Verification**: Checks if register `R7` contains `7`.
+   - **Expected Outcome**: Passes if `R7 = 7`.
+
+6. **Test Case 6: STR R7, [R3, #84]**
+   - **Instruction**: `mem[12+84] = 7`
+   - **Verification**: Checks if memory location `RAM[24]` contains `7`.
+   - **Expected Outcome**: Passes if `RAM[24] = 7`.
+
+7. **Test Case 7: LDR R2, [R0, #96]**
+   - **Instruction**: `R2 = mem[96] = 7`
+   - **Verification**: Checks if register `R2` contains `7`.
+   - **Expected Outcome**: Passes if `R2 = 7`.
+
+8. **Test Case 8: STR R2, [R0, #100]**
+   - **Instruction**: `mem[100] = 7`
+   - **Verification**: Checks if memory location `RAM[25]` contains `7`.
+   - **Expected Outcome**: Passes if `RAM[25] = 7`.
+
+
+##### Test Completion
    - The `$finish` system task is called at the end of the test to stop the simulation.
 
-#### Sample Output:
-When the test completes, the terminal will display one of the following messages:
-- **Test Passed**: If `R5` contains the expected value, the message will indicate a successful test.
+```
+$finish;
+```
+
+#### Sample Output
+When the test completes, the terminal will display the following messages:
+
+![image](https://github.com/user-attachments/assets/13222a9e-c5bb-41bf-8000-8d68c9e11bf2)
 
 ---
 
