@@ -5,8 +5,6 @@ The 32-bit ARM-like CPU design project aims to simulate a basic CPU architecture
 
 **edaplayground**: https://www.edaplayground.com/x/9uJ4
 
-![1734621516830-certificate](https://github.com/user-attachments/assets/71cb4012-300d-4d67-b7d3-922a9a9ec4d1)
-
 ---
 
 ## Instruction Set
@@ -443,6 +441,12 @@ $finish;
 When the test completes, the terminal will display the following messages:
 
 ![image](https://github.com/user-attachments/assets/13222a9e-c5bb-41bf-8000-8d68c9e11bf2)
+
+---
+
+## Certification
+
+![1734621516830-certificate](https://github.com/user-attachments/assets/71cb4012-300d-4d67-b7d3-922a9a9ec4d1)
 
 ---
 
